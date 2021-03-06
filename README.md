@@ -108,11 +108,16 @@ A plataforma DuCiclo vem com a ideia de interligar motoboys, lojistas e clientes
 ### 7	MODELO FÍSICO<br>
 
 CREATE TABLE LOJISTA (nomefantasia varchar(50), CNPJ char(13), razaosocial varchar(50), nome_resp varchar(50), telefone char(11), id_lojista integer PRIMARY KEY);
+
 CREATE TABLE ENTREGADU (cod_entregador integer PRIMARY KEY, nome varchar(50), telefone char(11), area_geografica varchar(30), email varchar(50), meio_transporte varchar(50), data_nascimento date, cpf char(11);
+
 CREATE TABLE CLIENTE (cod_cliente integer PRIMARY KEY, nome varchar(50), telefone varchar(11));
-CREATE TABLE ENCOMENDA (cod_encomenda integer PRIMARY KEY, nomeprod varchar, descricao varchar, valor decimal, quantidade int, data_entrega date, hora_entrega timestamp,hora_retirada timestamp, FK_ENTREGADU integer, FK_LOJISTA integer, FOREIGN KEY (FK_ENTREGADU) REFERENCES ENTREGADU (cod_entregador), FOREIGN KEY (FK_LOJISTA) REFERENCES LOJISTA (id_lojista));
+
+CREATE TABLE ENCOMENDA (cod_encomenda integer PRIMARY KEY, nomeprod varchar(50), descricao varchar(50), valor decimal, quantidade int, data_entrega date, hora_entrega timestamp, hora_retirada timestamp, FK_ENTREGADU integer, FK_LOJISTA integer, FOREIGN KEY (FK_ENTREGADU) REFERENCES ENTREGADU (cod_entregador), FOREIGN KEY (FK_LOJISTA) REFERENCES LOJISTA (id_lojista));
+
 CREATE TABLE PEDIDO_entrega (fk_encomenda integer, cod_pedido integer PRIMARY KEY, fk_ENTREGADU integer, fk_CLIENTE integer, FOREIGN KEY (fk_ENTREGADU) REFERENCES ENTREGADU (cod_entregador), FOREIGN KEY (fk_CLIENTE) REFERENCES CLIENTE (cod_cliente), FOREIGN KEY (fk_encomenda) REFERENCES ENCOMENDA (cod_encomenda));
-CREATE TABLE ENDERECO (logradouro varchar, número int, bairro varchar, cep char, cidade varchar, complemento varchar, refencia varchar, cod_lojista integer, id_cliente integer, FOREIGN KEY (cod_lojista) REFERENCES LOJISTA (id_lojista), FOREIGN KEY (id_cliente) REFERENCES CLIENTE (cod_cliente) 
+
+CREATE TABLE ENDERECO (logradouro varchar(50), número int, bairro varchar(50), cep char(8), cidade varchar(50), complemento varchar(50), refencia varchar(50), cod_lojista integer, id_cliente integer, FOREIGN KEY (cod_lojista) REFERENCES LOJISTA (id_lojista), FOREIGN KEY (id_cliente) REFERENCES CLIENTE (cod_cliente));
        
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
 
