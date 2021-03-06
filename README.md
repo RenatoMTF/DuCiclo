@@ -19,12 +19,12 @@ A plataforma DuCiclo vem com a ideia de interligar motoboys, lojistas e clientes
 
 ### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS<br>
 #### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
-Neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
 
-Sugestão: https://balsamiq.com/products/mockups/<br>
+![Alt text](https://github.com/GabrielleDuda/DuCiclo/blob/main/Prototipo-%20Renato%20Marques%20e%20Gabrielle%20Azevedo.pdf?raw=true "DuCiclo") <br><br>
 
-![Alt text](https://github.com/discipbd1/trab01/blob/master/balsamiq.png?raw=true "Title")
+
 ![Arquivo PDF do Protótipo Balsamiq feito para Aplicativo DuCiclo](https://github.com/GabrielleDuda/DuCiclo/blob/main/Prototipo-%20Renato%20Marques%20e%20Gabrielle%20Azevedo.pdf?raw=true "Aplicativo DuCiclo")
+
 #### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
       
 > O aplicativo DuCiclo precisa inicialmente dos seguintes relatórios:
@@ -46,8 +46,7 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
 ### 5.MODELO CONCEITUAL<br>
 ![Alt text](https://github.com/GabrielleDuda/DuCiclo/blob/main/conceitual%20-%20DUCICLO.png?raw=true "Modelo Conceitual")
     
-    
-        
+         
     
 #### 5.1 Validação do Modelo Conceitual
     [Grupo01]: [Nomes dos que participaram na avaliação]
@@ -55,16 +54,16 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
 
 #### 5.2 Descrição dos dados 
 
-LOJISTA: Tabela que armazena as informações relativa a loja que necessita da entrega. 
-    nomefantasia: nome popularizado da loja
-    CNPJ: número de identicação da loja de caracter jurídico
-    razaosocial: nome jurídico da loja
-    nome_resp: nome do funcionário que responde pela loja
-    telefone: número para comunicação com o lojista
-    id_lojista integer PRIMARY KEY
+> LOJISTA: Tabela que armazena as informações relativa a loja que necessita da entrega. <br>
+  *nomefantasia: nome popularizado da loja <br>
+  *CNPJ: número de identicação da loja de caracter jurídico <br>
+   azaosocial: nome jurídico da loja <br>
+    nome_resp: nome do funcionário que responde pela loja <br>
+    telefone: número para comunicação com o lojista <br>
+    id_lojista: código de identificação do lojista dentro do aplicativo <br>
 
-ENTREGADU (
-    cod_entregador integer PRIMARY KEY,
+ENTREGADU: Tabela que armazena os dados dos entregadores cadastrados no aplicativo  <br>
+    cod_entregador: código de identificação do entregador dentro do aplicativo <br>
     nome varchar,
     telefone char,
     area_geografica varchar,
