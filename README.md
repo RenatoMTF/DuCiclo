@@ -5,8 +5,8 @@ Trabalho desenvolvido durante a disciplina de BD1
 
 ### 1. COMPONENTES<br>
 Integrantes do grupo<br>
-Gabrielle Duda:gabiabacduda@gmail.com<br>
-Renato Marques:renatomtf26@gmail.com<br>
+Gabrielle Duda: gabiabacduda@gmail.com<br>
+Renato Marques: renatomtf26@gmail.com<br>
 <br>
 
 ### 2.INTRODUÇÃO E MOTIVAÇÃO<br>
@@ -55,17 +55,15 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
 
 #### 5.2 Descrição dos dados 
 
-LOJISTA: Tabela que armazena as informações relativa ao 
-    nomefantasia varchar,
-    CNPJ char,
-    razaosocial varchar,
-    nome_resp varchar,
-    telefone char,
-    endereco varchar,
+LOJISTA: Tabela que armazena as informações relativa a loja que necessita da entrega. 
+    nomefantasia: nome popularizado da loja
+    CNPJ: número de identicação da loja de caracter jurídico
+    razaosocial: nome jurídico da loja
+    nome_resp: nome do funcionário que responde pela loja
+    telefone: número para comunicação com o lojista
     id_lojista integer PRIMARY KEY
-);
 
-CREATE TABLE ENTREGADU (
+ENTREGADU (
     cod_entregador integer PRIMARY KEY,
     nome varchar,
     telefone char,
@@ -79,7 +77,6 @@ CREATE TABLE ENTREGADU (
 CREATE TABLE CLIENTE (
     cod_cliente integer PRIMARY KEY,
     nome varchar,
-    endereco char,
     telefone varchar
 );
 
@@ -102,32 +99,22 @@ CREATE TABLE PEDIDO_entrega (
     fk_ENTREGADU integer,
     fk_CLIENTE integer
 );
- 
-ALTER TABLE ENCOMENDA ADD CONSTRAINT FK_ENCOMENDA_2
-    FOREIGN KEY (FK_ENTREGADU)
-    REFERENCES ENTREGADU (cod_entregador);
- 
-ALTER TABLE ENCOMENDA ADD CONSTRAINT FK_ENCOMENDA_3
-    FOREIGN KEY (FK_LOJISTA_)
-    REFERENCES LOJISTA (id_lojista);
- 
-ALTER TABLE PEDIDO_entrega ADD CONSTRAINT FK_PEDIDO_entrega_2
-    FOREIGN KEY (fk_ENTREGADU)
-    REFERENCES ENTREGADU (cod_entregador);
- 
-ALTER TABLE PEDIDO_entrega ADD CONSTRAINT FK_PEDIDO_entrega_3
-    FOREIGN KEY (fk_CLIENTE)
-    REFERENCES CLIENTE (cod_cliente);
- 
-ALTER TABLE PEDIDO_entrega ADD CONSTRAINT FK_PEDIDO_entrega_4
-    FOREIGN KEY (fk_encomenda)
-    REFERENCES ENCOMENDA (cod_encomenda);.<br>
 
+CREATE TABLE ENDERECO (
+    logradouro varchar,
+    número int,
+    bairro varchar,
+    cep char,
+    cidade varchar,
+    complemento varchar,
+    refencia varchar,
+    id_lojista integer,
+    id_cliente integer
 
 ### 6	MODELO LÓGICO<br>
-        a) inclusão do esquema lógico do banco de dados
-        b) verificação de correspondencia com o modelo conceitual 
-        (não serão aceitos modelos que não estejam em conformidade)
+
+![Alt text](https://github.com/GabrielleDuda/DuCiclo/blob/main/logico%20-%20DUCICLO.png?raw=true "Modelo LÓGICO")
+
 
 ### 7	MODELO FÍSICO<br>
         a) inclusão das instruções de criacão das estruturas em SQL/DDL 
