@@ -54,16 +54,91 @@ A plataforma DuCiclo vem com a ideia de interligar motoboys, lojistas e clientes
 
 #### 5.2 Descrição dos dados 
 
-> LOJISTA: Tabela que armazena as informações relativa a loja que necessita da entrega. <br>
-  *nomefantasia: nome popularizado da loja <br>
-  *CNPJ: número de identicação da loja de caracter jurídico <br>
-   azaosocial: nome jurídico da loja <br>
-    nome_resp: nome do funcionário que responde pela loja <br>
-    telefone: número para comunicação com o lojista <br>
-    id_lojista: código de identificação do lojista dentro do aplicativo <br>
+> LOJISTA: Tabela que armazena as informações relativa a loja que necessita da entrega.
+   *nomefantasia: campo que armazena o nome popularizado da loja
+   *CNPJ: campo que armazena o número de identicação da loja de caracter jurídico
+   *razaosocial: campo que armazena o nome jurídico da loja 
+   *nome_resp: campo que armazena o nome do funcionário que responde pela loja
+   *telefone: campo que armazena o número para comunicação com o lojista
+   *id_lojista: campo que armazena o código de identificação do lojista dentro do aplicativo
 
-ENTREGADU: Tabela que armazena os dados dos entregadores cadastrados no aplicativo  <br>
-    cod_entregador: código de identificação do entregador dentro do aplicativo <br>
+> ENTREGADU: Tabela que armazena os dados dos entregadores cadastrados no aplicativo
+   *cod_entregador: campo que armazena o código de identificação do entregador dentro do aplicativo
+   *nome: campo que armazena o nome do entregador
+   *telefone: campo que armazena o telefone do entregador
+   *area_geografica: campo que armazena o cidade de atuação do entregador
+   *email: campo que armazena o email do entregador
+   *meio_transporte: campo que armazena o meio de locomoção do entregador
+   *data_nascimento: campo que armazena a data de nascimento do entregador
+   *cpf: campo que armazena o número do CPF do entregador para identificação externa do mesmo
+
+> CLIENTE: Tabela que armazena os dados dos clientes que compraram nas lojas cadastradas e esperam a encomenda
+   *cod_cliente: campo que armazena o código de identificação do cliente dentro do aplicativo
+   *nome: campo que armazena o nome do cliente
+   *telefone: campo que armazena o telefone do cliente
+
+> ENCOMENDA: Tabela que armazena os dados das encomendas feitas pelos lojistas cadastrados no aplicativo
+   *cod_encomenda: campo que armazena o código que identifica o cliente dentro do aplicativo
+   *nomeprod: campo que armazena o nome do produto que será entregue 
+   *descricao: campo que armazena a descrição do contéudo da encomenda
+   *valor: campo que armazena o valor da encomenda que será entregue
+   *quantidade: campo que armazena a quantidade de produtos estão sendo tratados dentro da encomenda
+   *data_entrega: campo que armazena a data que a entrega deve ser levada até o cliente
+   *hora_entrega: campo que armazena a previsão que a encomenda deve chegar ao cliente
+   *hora_retirada: campo que armazena a hora que a encomenda pode ser retirada da loja
+
+> PEDIDO_entrega: Tabela que faz a relação entre entregador, cliente e encomenda
+   *cod_pedido: campo que aramazena codigo da relação entre os dados dos pedidos
+   *Essa relação cria apenas a relação entre os elementos envolvendo os códigos de identificação dos mesmos.
+
+> ENDERECO: Tabela que armazena informações relativas ao endereço dos cadastrados
+   *logradouro: campo que armazena o nome da rua, viela, avenida dos cadastrados
+   *numero: campo que armazena o número da casa dos cadastrados
+   *bairro: campo que armazena o nome do bairro do cadastrado
+   *cidade: campo que armazena o nome da cidade do cliente
+   *cep: campo que armazena o cep para localização externa do cadastrado
+   *complemento: campo que armazena dados complementares para encontrar o cadastrado
+   *refencia: campo que armazena um ponto de referencia do endereço do cadastrado
+
+### 6	MODELO LÓGICO<br>
+
+![Alt text](https://github.com/GabrielleDuda/DuCiclo/blob/main/logico%20-%20DUCICLO.png?raw=true "Modelo LÓGICO")
+
+
+### 7	MODELO FÍSICO<br>
+
+CREATE TABLE LOJISTA (nomefantasia varchar(50), CNPJ char(13), razaosocial varchar(50), nome_resp varchar(50), telefone char(11), id_lojista integer PRIMARY KEY);
+CREATE TABLE ENTREGADU (cod_entregador integer PRIMARY KEY, nome varchar(50), telefone char(11), area_geografica varchar(30), email varchar(50), meio_transporte varchar(50), data_nascimento date, cpf char(11);
+CREATE TABLE CLIENTE (cod_cliente integer PRIMARY KEY, nome varchar(50), telefone varchar(11));
+CREATE TABLE ENCOMENDA (cod_encomenda integer PRIMARY KEY, nomeprod varchar, descricao varchar, valor decimal, quantidade int, data_entrega date, hora_entrega timestamp,hora_retirada timestamp, FK_ENTREGADU integer, FK_LOJISTA integer, FOREIGN KEY (FK_ENTREGADU) REFERENCES ENTREGADU (cod_entregador), FOREIGN KEY (FK_LOJISTA) REFERENCES LOJISTA (id_lojista));
+CREATE TABLE PEDIDO_entrega (fk_encomenda integer, cod_pedido integer PRIMARY KEY, fk_ENTREGADU integer, fk_CLIENTE integer, FOREIGN KEY (fk_ENTREGADU) REFERENCES ENTREGADU (cod_entregador), FOREIGN KEY (fk_CLIENTE) REFERENCES CLIENTE (cod_cliente), FOREIGN KEY (fk_encomenda) REFERENCES ENCOMENDA (cod_encomenda));
+CREATE TABLE ENDERECO (logradouro varchar, número int, bairro varchar, cep char, cidade varchar, complemento varchar, refencia varchar, cod_lojista integer, id_cliente integer, FOREIGN KEY (cod_lojista) REFERENCES LOJISTA (id_lojista), FOREIGN KEY (id_cliente) REFERENCES CLIENTE (cod_cliente) 
+       
+### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
+
+
+
+### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
+    OBS: Incluir para cada tópico as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
+    
+    
+    
+    
+#### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
+
+/* logicol - DUCICLO: */
+
+CREATE TABLE LOJISTA (
+    nomefantasia varchar,
+    CNPJ char,
+    razaosocial varchar,
+    nome_resp varchar,
+    telefone char,
+    id_lojista integer PRIMARY KEY
+);
+
+CREATE TABLE ENTREGADU (
+    cod_entregador integer PRIMARY KEY,
     nome varchar,
     telefone char,
     area_geografica varchar,
@@ -89,14 +164,19 @@ CREATE TABLE ENCOMENDA (
     hora_entrega timestamp,
     hora_retirada timestamp,
     FK_ENTREGADU integer,
-    FK_LOJISTA_ integer
+    FK_LOJISTA integer,
+    FOREIGN KEY (FK_ENTREGADU) REFERENCES ENTREGADU (cod_entregador),
+    FOREIGN KEY (FK_LOJISTA) REFERENCES LOJISTA (id_lojista)
 );
 
 CREATE TABLE PEDIDO_entrega (
     fk_encomenda integer,
     cod_pedido integer PRIMARY KEY,
     fk_ENTREGADU integer,
-    fk_CLIENTE integer
+    fk_CLIENTE integer,
+    FOREIGN KEY (fk_ENTREGADU) REFERENCES ENTREGADU (cod_entregador),
+    FOREIGN KEY (fk_CLIENTE) REFERENCES CLIENTE (cod_cliente),
+    FOREIGN KEY (fk_encomenda) REFERENCES ENCOMENDA (cod_encomenda)
 );
 
 CREATE TABLE ENDERECO (
@@ -107,30 +187,16 @@ CREATE TABLE ENDERECO (
     cidade varchar,
     complemento varchar,
     refencia varchar,
-    id_lojista integer,
-    id_cliente integer
-
-### 6	MODELO LÓGICO<br>
-
-![Alt text](https://github.com/GabrielleDuda/DuCiclo/blob/main/logico%20-%20DUCICLO.png?raw=true "Modelo LÓGICO")
-
-
-### 7	MODELO FÍSICO<br>
-        a) inclusão das instruções de criacão das estruturas em SQL/DDL 
-        (criação de tabelas, alterações, etc..) 
-        
-       
-### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
-        a) inclusão das instruções de inserção dos dados nas tabelas criadas pelo script de modelo físico
-        (Drop para exclusão de tabelas + create definição de para tabelas e estruturas de dados + insert para dados a serem inseridos)
-        b) Criar um novo banco de dados para testar a restauracao 
-        (em caso de falha na restauração o grupo não pontuará neste quesito)
-        c) formato .SQL
+    cod_lojista integer,
+    id_cliente integer,
+    FOREIGN KEY (cod_lojista) REFERENCES LOJISTA (id_lojista),
+    FOREIGN KEY (id_cliente) REFERENCES CLIENTE (cod_cliente)
+    
+);
+ 
 
 
-### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
-    OBS: Incluir para cada tópico as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
-#### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
+
 
 ># Marco de Entrega 01: Do item 1 até o item 9.1<br>
 
